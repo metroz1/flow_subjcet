@@ -10,11 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ExtensionService {
+
+    private String[] basicExtension = {"bat", "cmd", "com", "cpl", "exe", "scr", "js"};
 
     private final CustomExtensionRepository customExtensionRepository;
     private final BasicExtensionRepository basicExtensionRepository;
@@ -47,6 +50,9 @@ public class ExtensionService {
 
     @Transactional
     public ResponseEntity<?> createCustomExtension(String name) {
+
+        if (Arrays.asList(basicExtension).contains(name))
+            return new ResponseEntity<>("기본 확장자는 위에서 등록 바랍니다.", HttpStatus.BAD_REQUEST);
 
         if (customExtensionRepository.count() >= 200)
             return new ResponseEntity<>("등록 가능한 확장자 수를 초과했습니다.", HttpStatus.BAD_REQUEST);
