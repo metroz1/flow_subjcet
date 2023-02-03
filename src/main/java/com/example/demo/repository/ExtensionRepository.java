@@ -7,4 +7,6 @@ public interface ExtensionRepository extends JpaRepository<Extension, Long> {
 
     boolean existsByName(String name);
     void deleteByName(String name);
+
+    long countAll();
 }
