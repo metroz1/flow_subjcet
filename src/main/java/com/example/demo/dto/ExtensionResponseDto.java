@@ -11,6 +11,6 @@ public class ExtensionResponseDto {
     private String name;
 
     public ExtensionResponseDto(Extension extension) {
-        this.name = extension.getExtensionName();
+        this.name = extension.getName();
     }
 }
