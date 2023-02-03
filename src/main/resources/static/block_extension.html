@@ -25,7 +25,7 @@
 
             $.ajax({
                 method: 'GET',
-                url: '/extensions',
+                url: '/extensions/basics',
                 data: {},
                 success: function (response) {
 
@@ -36,18 +36,73 @@
                         let temp_html
 
                         if (response.includes(name))
-                            temp_html = `<input type="checkbox" class="extension" value="${name}" onclick="modifying(this)" checked>${name}`
+                            temp_html = `<input type="checkbox" class="extension" value="${name}" onclick="modifyBasicExtension(this)" checked>${name}`
                         else
-                            temp_html = `<input type="checkbox" class="extension" value="${name}" onclick="modifying(this)">${name}`
+                            temp_html = `<input type="checkbox" class="extension" value="${name}" onclick="modifyBasicExtension(this)">${name}`
 
                         $('#basic_box').append(temp_html)
                     }
                 }
             })
 
+            $.ajax({
+                method: 'GET',
+                url: '/extensions/customs',
+                data: {},
+                success: function (response) {
+                    let extensionNum = response.length;
+                    let temp_html = `<p>${extensionNum} / 200</p>`
+
+                    $('#custom_box').append(temp_html)
+
+                    for (let i = 0; i < response.length; i++) {
+                        let name = response[i]
+                        temp_html = `<p id="${name}_extension">${name} <button type="button" class="delete_button" id="${name}_extension_delete_button" value="${name}" onclick="deleteCustomExtension(this)">X</button></p>`
+
+                        $('#custom_box').append(temp_html)
+                    }
+
+                }
+            })
+
         }
 
-        function modifying(box) {
+        function deleteCustomExtension(button) {
+            let name = button.value
+
+            $.ajax({
+                method: 'DELETE',
+                url: '/extensions/customs',
+                data: {name: name},
+                error: function (error) {
+                    alert(error.responseText)
+                },
+                success: function (response) {
+                    alert(response)
+                    window.location.reload()
+                }
+            })
+        }
+
+        function addCustomExtension() {
+
+            let name = document.getElementById('custom_add').value;
+
+            $.ajax({
+                method: 'POST',
+                url: '/extensions/customs',
+                data: {name: name},
+                error: function (error) {
+                    alert(error.responseText)
+                },
+                success: function (response) {
+                    alert(response)
+                    window.location.reload()
+                }
+            })
+        }
+
+        function modifyBasicExtension(box) {
 
             let name = box.value
 
@@ -55,10 +110,13 @@
 
                 $.ajax({
                     method: 'POST',
-                    url: '/extensions',
+                    url: '/extensions/basics',
                     data: {name: name},
+                    error: function (error) {
+                        alert(error.responseText)
+                    },
                     success: function (response) {
-                        console.log(response)
+                        alert(response)
                     }
                 })
             }
@@ -66,10 +124,14 @@
 
                 $.ajax({
                     method: 'DELETE',
-                    url: '/extensions',
+                    url: '/extensions/basics',
                     data: {name: name},
+                    error: function (error) {
+                        alert(error.responseText)
+                    },
+
                     success: function (response) {
-                        console.log(response)
+                        alert(response)
                     }
                 })
             }
@@ -82,7 +144,12 @@
     <h1>파일 확장자 차단</h1>
 
     <div class="inner" id="basic_box">
-        <label>고정 확장자</label>
+        <label><b>고정 확장자</b></label>
+    </div>
+
+    <div class="inner" id="custom_box">
+        <label><b>커스텀 확장자</b><input type="text" Id="custom_add" placeholder="확장자 입력"><button id="custom_add_button" type="button" onclick="addCustomExtension()">+ 추가</button></label>
+
     </div>
 </div>
 

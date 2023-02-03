@@ -16,22 +16,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ExtensionController {
 
     private final ExtensionService extensionService;
-    @GetMapping
-    public ResponseEntity<?> getExtensionList() {
+    @GetMapping("/basics")
+    public ResponseEntity<?> getBasicExtensionList() {
 
-        return extensionService.getExtensionList();
+        return extensionService.getBasicExtensionList();
     }
 
-    @PostMapping
-    public ResponseEntity<?> createExtension(String name) {
+    @PostMapping("/basics")
+    public ResponseEntity<?> createBasicExtension(String name) {
 
-        return extensionService.createExtension(name);
+        return extensionService.createBasicExtension(name);
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteExtension(String name) {
+    @DeleteMapping("/basics")
+    public ResponseEntity<?> deleteBasicExtension(String name) {
 
-        return extensionService.deleteExtension(name);
+        return extensionService.deleteBasicExtension(name);
+    }
+
+    @GetMapping("/customs")
+    public ResponseEntity<?> getCustomExtensionList() {
+
+        return extensionService.getCustomExtensionList();
+    }
+
+    @PostMapping("/customs")
+    public ResponseEntity<?> createCustomExtension(String name) {
+
+        return extensionService.createCustomExtension(name);
+    }
+
+    @DeleteMapping("/customs")
+    public ResponseEntity<?> deleteCustomExtension(String name) {
+
+        return extensionService.deleteCustomExtension(name);
     }
 
 }

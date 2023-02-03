@@ -26,7 +26,7 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-
+*.db
 src/main/resources/application.properties
 
 # Gradle

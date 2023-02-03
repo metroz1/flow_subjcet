@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Extension {
+public class BasicExtension {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

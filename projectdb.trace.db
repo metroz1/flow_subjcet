@@ -1,28 +1,37 @@
-2023-02-03 14:05:54 database: wrong user or password; user: ""
-org.h2.message.DbException: Wrong user name or password [28000-214]
-	at org.h2.message.DbException.get(DbException.java:223)
-	at org.h2.message.DbException.get(DbException.java:199)
-	at org.h2.message.DbException.get(DbException.java:188)
-	at org.h2.engine.Engine.openSession(Engine.java:154)
+2023-02-03 06:59:04 database: opening /Users/js/Desktop/flow_subject/flow_subjcet/projectdb
+org.h2.message.DbException: Error opening database: "Concurrent update" [8000-210]
+	at org.h2.message.DbException.get(DbException.java:216)
+	at org.h2.store.FileLock.getExceptionFatal(FileLock.java:429)
+	at org.h2.store.FileLock.lockFile(FileLock.java:337)
+	at org.h2.store.FileLock.lock(FileLock.java:110)
+	at org.h2.engine.Database.<init>(Database.java:315)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
 	at org.h2.engine.Engine.openSession(Engine.java:222)
 	at org.h2.engine.Engine.createSession(Engine.java:201)
-	at org.h2.server.TcpServerThread.run(TcpServerThread.java:175)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
-	... 8 more
-2023-02-03 14:05:54 database: wrong user or password; user: ""
-org.h2.message.DbException: Wrong user name or password [28000-214]
-	at org.h2.message.DbException.get(DbException.java:223)
-	at org.h2.message.DbException.get(DbException.java:199)
-	at org.h2.message.DbException.get(DbException.java:188)
-	at org.h2.engine.Engine.openSession(Engine.java:154)
-	at org.h2.engine.Engine.openSession(Engine.java:222)
-	at org.h2.engine.Engine.createSession(Engine.java:201)
-	at org.h2.server.TcpServerThread.run(TcpServerThread.java:175)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
-	... 8 more
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.engine.SessionRemote.autoReconnect(SessionRemote.java:505)
+	at org.h2.engine.SessionRemote.removeServer(SessionRemote.java:470)
+	at org.h2.engine.SessionRemote.hasPendingTransaction(SessionRemote.java:183)
+	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:347)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.close(RemoteConnectionImpl.java:100)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:587)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:828)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:705)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:704)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Error opening database: "Concurrent update" [8000-210]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:523)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:496)
+	... 31 more
