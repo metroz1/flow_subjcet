@@ -18,9 +18,7 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class ExtensionService {
 
-    private String[] basicExtension = {"bat", "cmd", "com", "cpl", "exe", "scr", "js"};
-    private Pattern pattern = Pattern.compile("[ ㄱ-ㅎㅏ-ㅣ가-힣!@#$%^&*(),.?\":{}|<>]");
-
+    private final String[] basicExtension = {"bat", "cmd", "com", "cpl", "exe", "scr", "js"};
     private final CustomExtensionRepository customExtensionRepository;
     private final BasicExtensionRepository basicExtensionRepository;
 
