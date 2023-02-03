@@ -65,7 +65,7 @@ public class ExtensionService {
         if (name.length() > 20)
             return new ResponseEntity<>("확장자의 길이가 20 자리를 초과했습니다.", HttpStatus.BAD_REQUEST);
 
-        if (name.isBlank())
+        if (name.isBlank() || name.contains(" "))
             return new ResponseEntity<>("공백이 입력되었습니다.", HttpStatus.BAD_REQUEST);
 
         if (!name.matches(".*[0-9a-zA-Z].*"))
