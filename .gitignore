@@ -27,6 +27,8 @@
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+src/main/resources/application.properties
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries

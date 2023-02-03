@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+    </style>
+
+    <script>
+
+        function clickBox(event) {
+
+            let extension_name = event.target.value;
+
+            if(event.checked) {
+
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div class="outer">
+    <h1>파일 확장자 차단</h1>
+
+    <div class="inner">
+        <label>고정 확장자
+            <input type="checkbox" name="extension" value="bat">bat
+            <input type="checkbox" name="extension" value="cmd">cmd
+            <input type="checkbox" name="extension" value="com">com
+            <input type="checkbox" name="extension" value="cpl">cpl
+            <input type="checkbox" name="extension" value="exe">exe
+            <input type="checkbox" name="extension" value="scr">scr
+            <input type="checkbox" name="extension" value="js">js
+        </label>
+    </div>
+</div>
+
+
+</body>
+</html>
