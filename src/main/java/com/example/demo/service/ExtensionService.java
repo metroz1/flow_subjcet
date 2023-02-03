@@ -12,12 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
 public class ExtensionService {
 
     private String[] basicExtension = {"bat", "cmd", "com", "cpl", "exe", "scr", "js"};
+    private Pattern pattern = Pattern.compile("[ ㄱ-ㅎㅏ-ㅣ가-힣!@#$%^&*(),.?\":{}|<>]");
 
     private final CustomExtensionRepository customExtensionRepository;
     private final BasicExtensionRepository basicExtensionRepository;
@@ -62,6 +64,13 @@ public class ExtensionService {
 
         if (name.length() > 20)
             return new ResponseEntity<>("확장자의 길이가 20 자리를 초과했습니다.", HttpStatus.BAD_REQUEST);
+
+        if (name.isBlank())
+            return new ResponseEntity<>("공백이 입력되었습니다.", HttpStatus.BAD_REQUEST);
+
+        if (!name.matches(".*[0-9a-zA-Z].*"))
+            return new ResponseEntity<>("확장자에는 영어 알파벳과 숫자만 가능합니다.", HttpStatus.BAD_REQUEST);
+
 
         CustomExtension extension = CustomExtension.builder().name(name).build();
 
